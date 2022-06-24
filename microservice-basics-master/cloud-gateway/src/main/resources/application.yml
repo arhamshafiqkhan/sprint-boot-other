@@ -1,0 +1,20 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: API-GATEWAY
+    type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: STUDENT-SERVICE
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/students/**
+        - id: COURSE-SERVICE
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/courses/**
+
+
